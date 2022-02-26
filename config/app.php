@@ -69,8 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+//    'timezone' => 'UTC',
+    'timezone' => 'Asia/Calcutta',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

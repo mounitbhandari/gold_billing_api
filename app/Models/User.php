@@ -47,6 +47,16 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($password);
         }
     }
+    public function getCreatedAtAttribute($value)
+    {
+        return changeDateFormUTCtoLocal($this->attributes['created_at']);
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return changeDateFormUTCtoLocal($this->attributes['updated_at']);
+    }
+
     public function user_type(){
         return $this->belongsTo('App\Models\UserType','user_type_id');
     }

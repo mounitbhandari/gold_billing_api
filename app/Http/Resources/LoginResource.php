@@ -27,7 +27,7 @@ class LoginResource extends JsonResource
             'name' => $this->name,
             'userTypeId' => $this->user_type_id,
             'userTypeName' => $this->user_type->user_type_name,
-            'company' => $this->company,
+            'company' => new CompanyResource($this->company),
             'token' => $this->token,
         ];
     }
