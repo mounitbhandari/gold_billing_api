@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId("customer_id")->references("id")->on("customers");
             $table->date("sale_date");
             $table->string("invoice_number",15);
+            $table->decimal("discount");
+            $table->decimal("round_off");
             $table->timestamps();
         });
     }
