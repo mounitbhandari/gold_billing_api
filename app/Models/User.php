@@ -47,4 +47,10 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($password);
         }
     }
+    public function user_type(){
+        return $this->belongsTo('App\Models\UserType','user_type_id');
+    }
+    public function company(){
+        return $this->belongsTo('App\Models\Company','company_id');
+    }
 }

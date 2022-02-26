@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId("user_type_id")->references("id")->on("user_types");
+            $table->foreignId("company_id")->references("id")->on("companies");
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
