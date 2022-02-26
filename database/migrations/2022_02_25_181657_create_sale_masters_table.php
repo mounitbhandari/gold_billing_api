@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('sale_masters', function (Blueprint $table) {
             $table->id();
             $table->foreignId("customer_id")->references("id")->on("customers");
-            $table->date("date");
-            $table->string("invoice_number");
+            $table->date("sale_date");
+            $table->string("invoice_number",15);
             $table->timestamps();
         });
     }
