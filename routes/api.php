@@ -34,9 +34,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::post('customers', [CustomerController::class, 'saveCustomer']);
     Route::delete("customers/{id}",[CustomerController::class, 'delete']);
+
 });
 
-Route::fallback(function(){
-    return response()->json([
-        'message' => 'Page Not Found. If error persists, contact info@website.com'], 404);
-});
+
+
