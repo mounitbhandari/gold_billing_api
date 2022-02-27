@@ -24,7 +24,7 @@ class LoginResource extends JsonResource
     {
         return [
             'uniqueId' => $this->id,
-            'name' => $this->name,
+            'userName' => $this->name,
             'userTypeId' => $this->user_type_id,
             'userTypeName' => $this->user_type->user_type_name,
             'company' => new CompanyResource($this->company),
