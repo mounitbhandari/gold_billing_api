@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post("login",[UserController::class,'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/me', function (Request $request) {
@@ -30,4 +31,12 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get("actualToken",[UserController::class,'actualToken']);
     Route::get("logout",[UserController::class,'logout']);
     Route::get("revokeAll",[UserController::class,'revoke_all']);
+
+    Route::post('customers', [CustomerController::class, 'saveCustomer']);
+    Route::delete("customers/{id}",[CustomerController::class, 'delete']);
+});
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found. If error persists, contact info@website.com'], 404);
 });

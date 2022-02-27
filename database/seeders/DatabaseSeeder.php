@@ -35,5 +35,6 @@ class DatabaseSeeder extends Seeder
         User::create(['name'=>'Tanusree Hui','email'=>'owner','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1,'company_id'=>2]);
 
         Customer::create(['company_id'=>2,'customer_name'=>'Amita Jeweelers','address'=>'Sodepore','opening_gold'=>12.036,'opening_lc'=>2350]);
+        Customer::create(['company_id'=>2,'customer_name'=>'Sumit Jeweelers','address'=>'Khardah','opening_gold'=>2.576,'opening_lc'=>950]);
     }
 }

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId("company_id")->references("id")->on("companies");
             $table->string("customer_name")->nullable(true);
+            $table->string("mailing_name")->nullable(true);
             $table->string("mobile1")->nullable(true);
+            $table->string("mobile2")->nullable(true);
             $table->string("address")->nullable(true);
             $table->decimal('opening_gold')->default(0);
             $table->integer('opening_lc')->default(0);

@@ -11,17 +11,18 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends ApiController
 {
+    public function register(Request $request)
+    {
+        $user = User::create([
+            'email'    => $request->email,
+            'password' => $request->password,
+        ]);
+        $token = $user->createToken('my-app-token')->plainTextToken;
+        return response()->json(['success'=>1,'user'=>$user, 'token'=>$token ,'message'=>'Welcome'], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     function login(Request $request)
     {
-//        return $request;
-//        if(Auth::attempt(['email' => $request->loginId, 'password' => $request->loginPassword])){
-//            $user = Auth::user();
-//            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-//            $success['name'] =  $user->name;
-//
-//            return $success;
-//        }
-
         $user= User::where('email', $request->loginId)->first();
         // print_r($data);
         if (!$user || !Hash::check($request->loginPassword, $user->password)) {
