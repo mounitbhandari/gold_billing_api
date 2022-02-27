@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('sale_masters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("company_id")->references("id")->on("companies");
             $table->foreignId("customer_id")->references("id")->on("customers");
             $table->date("sale_date");
             $table->string("invoice_number",15);

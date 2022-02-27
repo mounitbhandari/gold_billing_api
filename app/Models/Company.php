@@ -18,4 +18,13 @@ class Company extends Model
     {
         return changeDateFormUTCtoLocal($this->attributes['updated_at']);
     }
+    public function products(){
+        return $this->hasMany(Product::class, 'company_id');
+    }
+    public function customers(){
+        return $this->hasMany(Customer::class, 'company_id');
+    }
+    public function sale_masters(){
+        return $this->hasMany(SaleMaster::class, 'company_id');
+    }
 }

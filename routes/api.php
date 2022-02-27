@@ -19,3 +19,15 @@ Route::post("login",[UserController::class,'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::get('/me', function (Request $request) {
+        return auth()->user();
+    });
+    Route::get("user",[UserController::class,'getCurrentUser']);
+    Route::put("user",[UserController::class,'updatePassword']);
+    Route::get("token",[UserController::class,'getBearerToken']);
+    Route::get("actualToken",[UserController::class,'actualToken']);
+    Route::get("logout",[UserController::class,'logout']);
+    Route::get("revokeAll",[UserController::class,'revoke_all']);
+});
