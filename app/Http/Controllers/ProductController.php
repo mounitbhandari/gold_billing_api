@@ -19,9 +19,11 @@ class ProductController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_all_products()
     {
-        //
+        $products = Product::get();
+        return response()->json(['success'=>1,'data'=>$products], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
