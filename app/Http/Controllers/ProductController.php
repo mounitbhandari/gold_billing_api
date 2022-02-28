@@ -32,8 +32,8 @@ class ProductController extends ApiController
     public function save_products(Request $request)
     {
         $rules = array(
-            'company_id' => 'requird',
-            'product_name' => 'requird',
+            'company_id' => 'required',
+            'product_name' => 'required',
         );
         $messsages= array(
             'company_id' => 'company_id is Required',
@@ -43,7 +43,6 @@ class ProductController extends ApiController
         $validator = Validator::make($request->all(),$rules,$messsages );
 
         if($validator->fails()){
-           
             return $this->errorResponse('test',422);
         }
 

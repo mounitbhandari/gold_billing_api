@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     //product
 
-    Route::post("save_product",[ProductController::class,'save_products']);
+    Route::post("products",[ProductController::class,'save_products']);
 
 });
 
