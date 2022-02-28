@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-class ProductController extends Controller
+
+// use GuzzleHttp\Psr7\Request;
+
+class ProductController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +29,39 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function save_products(Request $request)
     {
-        //
+        $rules = array(
+            'company_id' => 'requird',
+            'product_name' => 'requird',
+        );
+        $messsages= array(
+            'company_id' => 'company_id is Required',
+            'product_name' => 'product_name is Required',
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messsages );
+
+        if($validator->fails()){
+           
+            return $this->errorResponse('test',422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $product = new Product();
+            $product->company_id = $request->input('company_id');
+            $product->product_name = $request->input('product_name');
+            $product->Description = $request->input('Description');
+            $product->save();
+            DB::commit();
+            return $this->successResponse($product);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->errorResponse($e);
+        }
+
+        // return response()->json(['success'=>1,'data'=>$product], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

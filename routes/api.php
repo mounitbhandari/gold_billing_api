@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::post('customers', [CustomerController::class, 'saveCustomer']);
     Route::delete("customers/{id}",[CustomerController::class, 'delete']);
+
+    //product
+
+    Route::post("save_product",[ProductController::class,'save_products']);
 
 });
 
