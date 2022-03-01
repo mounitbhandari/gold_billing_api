@@ -29,20 +29,20 @@ class ProductController extends ApiController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function save_products(Request $request)
     {
         $rules = array(
-            'company_id' => 'required',
-            'product_name' => 'required',
+            'companyId' => 'required',
+            'productName' => 'required',
         );
-        $messsages= array(
-            'company_id' => 'company_id is Required',
-            'product_name' => 'product_name is Required',
+        $messages= array(
+            'companyId' => 'company_id is Required',
+            'productName' => 'product_name is Required',
         );
 
-        $validator = Validator::make($request->all(),$rules,$messsages );
+        $validator = Validator::make($request->all(),$rules,$messages );
 
         if($validator->fails()){
             return $this->errorResponse('test',422);
@@ -51,9 +51,9 @@ class ProductController extends ApiController
         DB::beginTransaction();
         try {
             $product = new Product();
-            $product->company_id = $request->input('company_id');
-            $product->product_name = $request->input('product_name');
-            $product->Description = $request->input('Description');
+            $product->company_id = $request->input('companyId');
+            $product->product_name = $request->input('productName');
+            $product->Description = $request->input('description');
             $product->save();
             DB::commit();
             return $this->successResponse($product);
