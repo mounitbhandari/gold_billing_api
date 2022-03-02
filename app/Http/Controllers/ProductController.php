@@ -33,21 +33,24 @@ class ProductController extends ApiController
      * @param Request $request
      * @return JsonResponse
      */
-    public function save_products(Request $request)
+    public function save_products(Request $request): JsonResponse
     {
         $rules = array(
-            'companyId' => 'required',
+            'companyId' => 'required|exists:companies,id',
             'productName' => 'required',
+            'description' => 'max:255',
         );
         $messages= array(
-            'companyId' => 'company_id is Required',
-            'productName' => 'product_name is Required',
+            'companyId.required' => 'Company Id is Required',
+            'companyId.exists' => 'Company Does not exists',
+            'productName.required' => 'Product Name is Required',
+            'description.max' => 'Should be within 255',
         );
 
         $validator = Validator::make($request->all(),$rules,$messages );
 
         if($validator->fails()){
-            return $this->errorResponse('test',422);
+            return $this->errorResponse($validator->getMessageBag(),422);
         }
 
         DB::beginTransaction();
