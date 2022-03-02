@@ -62,6 +62,7 @@ class ProductController extends ApiController
             $product->in_force = true;
             $product->save();
             DB::commit();
+            // return $this->successResponse($product);
             return $this->successResponse(new ProductResource($product));
         } catch (\Exception $e) {
             DB::rollBack();

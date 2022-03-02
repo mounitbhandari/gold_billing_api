@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
     /**
      * @var mixed
      */
-    private $company_id;
+    // private $company_id;
 
     /**
      * Transform the resource into an array.
