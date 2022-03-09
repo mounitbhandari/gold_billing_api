@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->foreignId("company_id")->references("id")->on("companies");
+            $table->foreignId("customer_category_id")->references("id")->on("customer_categories")->onDelete('cascade');
             $table->string("customer_name")->nullable(true);
             $table->string("mailing_name")->nullable(true);
             $table->string("mobile1")->nullable(true);

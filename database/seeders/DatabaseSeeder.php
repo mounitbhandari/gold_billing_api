@@ -18,23 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        UserType::insert([
-            ['user_type_name' => 'Admin'],
-            ['user_type_name' => 'Developer'],
-            ['user_type_name' => 'Owner'],
-            ['user_type_name' => 'Manager'],
-            ['user_type_name' => 'Employee'],
-        ]);
-        Company::create(['company_name' => 'Not Applicable','mailing_name'=>'Not Applicable']);
-        Company::create(['company_name' => 'LG','mailing_name'=>'LG']);
-        Company::create(['company_name' => 'SAMSUNG','mailing_name'=>'SAMSUNG']);
-        Company::create(['company_name' => 'DELL','mailing_name'=>'DELL']);
 
-        User::create(['name'=>'Sukanta Hui','email'=>'developer','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1,'company_id'=>1]);
-        User::create(['name'=>'Administrator','email'=>'admin','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1,'company_id'=>1]);
-        User::create(['name'=>'Tanusree Hui','email'=>'owner','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1,'company_id'=>2]);
+        $this->call(UserTypeSeeder::class);
+        $this->call(CompanySeeder::class);
+        $this->call(UserSeeder::class);
 
-        Customer::create(['company_id'=>2,'customer_name'=>'Amita Jeweelers','address'=>'Sodepore','opening_gold'=>12.036,'opening_lc'=>2350]);
-        Customer::create(['company_id'=>2,'customer_name'=>'Sumit Jeweelers','address'=>'Khardah','opening_gold'=>2.576,'opening_lc'=>950]);
+        $this->call(CustomerCategorySeeder::class);
+        $this->call(CustomerSeeder::class);
+
+
     }
 }
