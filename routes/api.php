@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -40,6 +41,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::post("products",[ProductController::class,'save_products']);
     Route::get("products",[ProductController::class, 'get_all_products']);
+
+    //company
+    Route::get("companies",[CompanyController::class, 'get_all_company']);
+
 
 });
 

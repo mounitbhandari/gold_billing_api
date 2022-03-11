@@ -13,9 +13,11 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function get_all_company()
     {
-        //
+        $company = Company::get();
+        return $company;
+
     }
 
     /**
