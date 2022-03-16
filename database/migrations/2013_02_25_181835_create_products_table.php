@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("description")->nullable(true);
             $table->tinyInteger('in_force')->default(1);
             $table->timestamps();
+            $table->unique(["company_id","product_name"]);
         });
     }
 

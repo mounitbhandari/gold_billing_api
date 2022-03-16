@@ -66,6 +66,9 @@ class ProductController extends ApiController
             return $this->successResponse(new ProductResource($product));
         } catch (\Exception $e) {
             DB::rollBack();
+            if(in_array(1062,$e->errorInfo)){
+                return $this->errorResponse($e,409);
+            }
             return $this->errorResponse($e);
         }
 
