@@ -35,9 +35,10 @@ class ProductController extends ApiController
      */
     public function save_products(Request $request): JsonResponse
     {
+        $companyId = $request->input('companyId');
         $rules = array(
             'companyId' => 'required|exists:companies,id',
-            'productName' => 'required',
+            'productName' => 'required | unique:products,product_name,NULL,id,company_id,'.$companyId,
             'description' => 'max:255',
         );
         $messages= array(
